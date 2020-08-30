@@ -11,18 +11,17 @@ class CatAdoptionQueue extends Component {
 
     render () {
         return (
-            <>
+            <article className='group-pet-info'>
                 <h2>Cat Adoption Queue</h2>
                 <h3>{this.props.name}</h3>
-                <p>{this.props.name}</p>
-                <p>{this.props.age}</p>
-                <p>{this.props.breed}</p>
-                <p>{this.props.description}</p>
-                <p>{this.props.gender}</p>
-                <p>{this.props.story}</p>
                 <img src={this.props.imageURL} alt={this.props.name} />
+                <p>Age: {this.props.age}</p>
+                <p>Breed: {this.props.breed}</p>
+                <p>Description: {this.props.description}</p>
+                <p>Gender: {this.props.gender}</p>
+                <p>Story: {this.props.story}</p>
                 {this.displayAdoptButton()}
-            </>
+            </article>
         );
     }
 };

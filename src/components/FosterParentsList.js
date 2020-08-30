@@ -7,9 +7,13 @@ class FosterParentsList extends Component {
         return (
             <>
                 <h2>Foster Parents List</h2>
-                <ul>
+                <form onSubmit={(e) => this.props.handleFosterParentEnqueue(e)}>
+                    <input id='newFosterParent' placeholder='Enqueue your name!' type='text'></input>
+                    <button>Enqueue!</button>
+                </form>
+                <ol>
                     {fosterParentsList}
-                </ul>
+                </ol>
             </>
         );
     };

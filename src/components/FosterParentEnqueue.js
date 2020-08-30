@@ -6,8 +6,7 @@ class FosterParentEnqueue extends Component {
             <>
                 <h2>Foster Parent Enqueue</h2>
                 <form onSubmit={(e) => this.props.handleFosterParentEnqueue(e)}>
-                    <label htmlFor='newFosterParent'>New Foster Parent Name: </label>
-                    <input id='newFosterParent' type='text'></input>
+                    <input id='newFosterParent' placeholder='Enqueue your name!' type='text'></input>
                     <button>Enqueue!</button>
                 </form>
                 

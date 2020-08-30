@@ -1,19 +1,16 @@
 import React from 'react';
 
 function CatsAdoptionListItem(props) {
-    console.log(props);
     return (
-        <>
+        <article className='group-pet-info'>
             <h2>{props.name}</h2>
-            <p>{props.name}</p>
-            <p>{props.age}</p>
-            <p>{props.breed}</p>
-            <p>{props.description}</p>
-            <p>{props.gender}</p>
-            <p>{props.story}</p>
             <img src={props.imageURL} alt={props.name} />
-
-        </>
+            <p>Age: {props.age}</p>
+            <p>Breed: {props.breed}</p>
+            <p>Description: {props.description}</p>
+            <p>Gender: {props.gender}</p>
+            <p>Story: {props.story}</p>
+        </article>
     );
 };
 

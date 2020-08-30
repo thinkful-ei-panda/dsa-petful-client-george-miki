@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import config from '../config';
 import CatsAdoptionList from '../components/CatsAdoptionList';
 import DogsAdoptionList from '../components/DogsAdoptionList';
 
@@ -10,8 +11,13 @@ class AdoptionListPage extends Component {
     };
 
     componentDidMount() {
-        return fetch(`http://localhost:8000/pets`)
-            .then(response => response.json())
+        return fetch(`${config.API_ENDPOINT}pets`)
+            .then(response => {
+                if(!response.ok) {
+                    return response.json().then(e => Promise.reject(e))
+                };
+                return response.json();
+            })
             .then(response => {
                 const { cats, dogs } = response;
                 this.setState({cats, dogs});
@@ -24,9 +30,11 @@ class AdoptionListPage extends Component {
     render() {
         return (
             <>
-                <h2>Adoption List Page</h2>
-                <CatsAdoptionList cats={this.state.cats} />
-                <DogsAdoptionList dogs={this.state.dogs} />
+                <h2>Adoption List</h2>
+                <section className='group'>
+                    <CatsAdoptionList cats={this.state.cats} />
+                    <DogsAdoptionList dogs={this.state.dogs} />
+                </section> 
             </>
         );
     };

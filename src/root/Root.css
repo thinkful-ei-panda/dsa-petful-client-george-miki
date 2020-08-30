@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Raleway&display=swap');
+
+.wrapper {
+    width: 100%;
+    margin: auto;
+}
+
+/* Flex */
+
+.group {
+    display: flex;
+    /* border: 1px solid #212121; */
+    flex-flow: column wrap;
+    padding: 10px;
+}
+
+.group-column {
+    display: flex;
+    flex: 1;
+    flex-flow: column wrap;
+}
+
+.group-row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.group-pet-info {
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 4px 4px 6px 3px #bdbdbd;
+    flex-flow: column wrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+/* Typography */
+
+h1, h2, h3 {
+    font-family: 'Lora', serif;
+}
+
+h1, h2, h3, a {
+    text-align: center;
+}
+
+p {
+    text-align: left;
+}
+
+button, input, label, li, p {
+    font-family: 'Raleway', sans-serif;
+}
+
+.left {
+    text-align: left;
+}
+
+/* Elements */
+
+.align-self-center {
+    align-self: center;
+}
+
+button {
+    align-self: center;
+    margin: 10px;
+}
+
+form {
+    text-align: center;
+}
+
+img {
+    align-self: center;
+    width: 300px;
+}
+
+@media all and (min-width: 800px) {
+    .wrapper {
+        width: 80%;
+        margin: auto;
+    }
+
+    .group {
+        flex-flow: row wrap;
+    }
+
+    .group-column {
+        padding: 10px;
+        padding-bottom: 0px;
+    }
+
+    .group-pet-info {
+        /* flex: 1; */
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 50%;
+    }
+
+    h1 {
+        text-align: left;
+    }
+
+    img {
+        align-self: center;
+        width: 250px;
+    }
+}
