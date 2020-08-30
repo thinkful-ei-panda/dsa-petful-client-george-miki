@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
-import CatAdoptionList from '../components/CatAdoptionList';
-import DogAdoptionList from '../components/DogAdoptionList';
+import CatsAdoptionList from '../components/CatsAdoptionList';
+import DogsAdoptionList from '../components/DogsAdoptionList';
 
 class AdoptionListPage extends Component {
     state = {
-        pets: [],
+        cats: [],
+        dogs: [],
+        error: null,
     };
 
-    render () {
+    componentDidMount() {
+        return fetch(`http://localhost:8000/pets`)
+            .then(response => response.json())
+            .then(response => {
+                const { cats, dogs } = response;
+                this.setState({cats, dogs});
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    render() {
         return (
             <>
                 <h2>Adoption List Page</h2>
-                <CatAdoptionList />
-                <DogAdoptionList />
+                <CatsAdoptionList cats={this.state.cats} />
+                <DogsAdoptionList dogs={this.state.dogs} />
             </>
         );
     };

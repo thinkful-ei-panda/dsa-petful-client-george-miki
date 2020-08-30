@@ -5,6 +5,12 @@ class FosterParentEnqueue extends Component {
         return (
             <>
                 <h2>Foster Parent Enqueue</h2>
+                <form onSubmit={(e) => this.props.handleFosterParentEnqueue(e)}>
+                    <label htmlFor='newFosterParent'>New Foster Parent Name: </label>
+                    <input id='newFosterParent' type='text'></input>
+                    <button>Enqueue!</button>
+                </form>
+                
             </>
         );
     }

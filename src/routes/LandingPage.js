@@ -9,7 +9,6 @@ class LandingPage extends Component {
                 <p>Text</p>
                 <p>Photo</p>
                 <button>Start Button</button>
-
             </>
         );
     };

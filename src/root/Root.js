@@ -13,7 +13,7 @@ class Root extends Component {
                 <main>
                     <Switch>
                         <Route path={'/adoptionlistpage'} component={AdoptionListPage} />
-                        <Route path={'/adoptionpage'} component={AdoptionPage} />
+                        <Route path={'/adoptionpage'} render={props => <AdoptionPage {...props} />} />
                         <Route path={'/'} component={LandingPage} />
                     </Switch>
                 </main>
