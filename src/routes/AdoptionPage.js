@@ -89,10 +89,10 @@ class AdoptionPage extends Component {
     // Demo Code
 
     handlePageDemo = () => {
-        this.setState({adopted: null, demo: 'Demo starts in a few'}, () => {
+        this.setState({adopted: null, demo: 'Demo starts in 15 seconds. Please put in your name!'}, () => {
                 setTimeout(() => {
-                const intervalID = setInterval(() => this.handleAdoptDemo(intervalID), 1000)
-                }, 1000)}
+                const intervalID = setInterval(() => this.handleAdoptDemo(intervalID), 5000)
+                }, 15000)}
         );
     };
 
@@ -185,9 +185,6 @@ class AdoptionPage extends Component {
     };
 
     componentDidMount() { 
-        let cats;
-        let dogs;
-
         // Change to Promise.all
         fetch(`${config.API_ENDPOINT}pets`)
             .then(response => {
@@ -196,10 +193,12 @@ class AdoptionPage extends Component {
                 }
                 return response.json();
             })
-            .then(response => {
-                cats = response.cats;
-                dogs = response.dogs;
-            })
+            .then(response =>
+                this.setState({
+                    cats: response.cats,
+                    dogs: response.dogs,
+                })
+            )
             .then(
                 fetch(`${config.API_ENDPOINT}people`)
                     .then(response => {
@@ -210,8 +209,6 @@ class AdoptionPage extends Component {
                     })
                     .then(response => {
                         this.setState({
-                            cats,
-                            dogs,
                             fosterParents: response,
                         })
                     })
@@ -239,7 +236,6 @@ class AdoptionPage extends Component {
                     </section>
 
                     <section className='group-column'>
-                        {/* <FosterParentEnqueue handleFosterParentEnqueue={this.handleFosterParentEnqueue} /> */}
                         <FosterParentsList fosterParents={fosterParents} handleFosterParentEnqueue={this.handleFosterParentEnqueue}/>
                     </section>
                 </div> 
