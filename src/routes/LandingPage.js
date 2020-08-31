@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 class LandingPage extends Component {
     render () {
@@ -25,7 +24,6 @@ class LandingPage extends Component {
                     <li>As soon as the grace period ends, both pets on queue will be 'adopted' by the person on top of the Foster Parent List.</li>
                     <li>When it is your turn, you may choose to adopt any of the pets. See the list populate with names until it reaches a length of 5.</li>
                 </ol>
-                <Link to={'/adoptionpage'}><button>Start Button</button></Link>
             </article>
         );
     };

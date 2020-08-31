@@ -1,70 +1,188 @@
-# Petful Client
+# Petsy App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Link
+**Link to live app: https://petsy-xi.vercel.app/adoptionpage
 
-## Available Scripts
+<p>&nbsp;</p>
 
-In the project directory, you can run:
+## Table of Contents
+1. Description
+2. How It Works
+3. How the Demo Works
+4. Server/API Documentation
+    1. POST Auth Endpoint
+    2. GET Disaster Endpoints
+    3. GET User Endpoints
+    4. POST User Endpoints
+    5. PATCH User Endpoints
+    6. DELETE User Endpoints 
+5. Technologies
 
-### `npm start`
+<p>&nbsp;</p>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Description
+* Acclimate is an informational and utility **disaster management** app
+* It aims to provide accurate, reliable, and useful information and tools to be able to handle impending disasters systematically and effectively
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<p>&nbsp;</p>
 
-### `npm test`
+## How It Works
+1. A user may only adopt a cat or a dog that has been in the shelter the longest and at his turn.
+2. To see a full list of pets for adoption, the user may navigate to the adoption list page.
+3. To begin the adoption process, the user may navigate to the adoption page, where the pets in front of the adoption queue are shown.
+4. For a chance to adopt, the user must enqueue his name onto the list.
+5. When it is his turn, an adopt button will appear on the screen next to each pet.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<p>&nbsp;</p>
 
-### `npm run build`
+## How the Demo Works
+As the user, I can:
+1. To see a demo of this site, please click the 'Start Demo' demo on the adoption page.
+2. There is a 15-second grace period to enqueue your name. Please do so!
+3. As soon as the grace period ends, both pets on queue will be 'adopted' by the person on top of the Foster Parent List.
+4. When it is your turn, you may choose to adopt any of the pets. See the list populate with names until it reaches a length of 5.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p>&nbsp;</p>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Server Documentation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Pets Endpoint
 
-### `npm run eject`
+#### GET pets data
+Returns JSON data containing cats and dogs information
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* **URL**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    `/pets`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* **Method**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    `GET`
 
-## Learn More
+* **URL Params**
+    
+    None
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* **Data Params**
+    * **Required:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+        None
 
-### Code Splitting
+* **Success Response**
+    * **Code:** 200 <br />
+    **Content:** `{cats: [], dogs: []}`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* **Error Response**
+    * **Code:** 400 <br />
+    **Content:** `{error: "No items in queue"}` <br />
 
-### Analyzing the Bundle Size
+<p>&nbsp;</p>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+#### DELETE (DEQUEQUE) pet/s data
+Removes pet and foster parent data from queue and returns an object containing adoption information
 
-### Making a Progressive Web App
+* **URL**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+    `/pets`
 
-### Advanced Configuration
+* **Method**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+    `DELETE`
 
-### Deployment
+* **URL Params**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+    None
 
-### `npm run build` fails to minify
+* **Data Params**
+   * **Required:**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+        `{type}`
+
+* **Success Response**
+    * **Code:** 200 <br />
+    **Content:** `{adopted}`
+
+    ``` js
+    const adopted = {
+            adopted: {
+                cats,
+                dogs,
+            }
+            fosterParent,
+    };
+    ```
+
+* **Error Response**
+    * **Code:** 400
+
+<p>&nbsp;</p>
+
+### People Endpoint
+
+#### GET pets data
+Returns JSON data containing foster parents information
+
+* **URL**
+
+    `/people`
+
+* **Method**
+
+    `GET`
+
+* **URL Params**
+    
+    None
+
+* **Data Params**
+    * **Required:**
+
+        None
+
+* **Success Response**
+    * **Code:** 200 <br />
+    **Content:** `{fosterParents: []}`
+
+* **Error Response**
+    * **Code:** 400 <br />
+    **Content:** `{error: "No items in queue"}` <br />
+
+<p>&nbsp;</p>
+
+#### POST (ENQUEQUE) foster parent data
+Adds new foster parent to back of queue
+
+* **URL**
+
+    `/people`
+
+* **Method**
+
+    `POST`
+
+* **URL Params**
+
+    None
+
+* **Data Params**
+   * **Required:**
+
+        `{newFosterParent}`
+
+* **Success Response**
+    * **Code:** 200 <br />
+    **Content:** `{message: 'Successfully added'}`
+
+* **Error Response**
+    * **Code:** 400
+
+<p>&nbsp;</p>
+
+## Technology Used
+1. HTML, CSS, JavaScript
+2. React
+3. Node.js
+4. Express
+5. Queue Data Structure
+6. Vercel
+7. Heroku
